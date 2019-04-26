@@ -7,8 +7,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.StringUtils;
 
+/**
+ * Jackson可以轻松地将Java对象转换成json对象和xml文档
+ *      同样也可以将json、xml转换成Java对象
+ */
 @Slf4j
-public class JsonUtil {
+public class JacksonUtil {
 
     public static final ObjectMapper objectMapper = new ObjectMapper();
 
