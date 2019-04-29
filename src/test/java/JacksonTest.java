@@ -1,6 +1,6 @@
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
-import entity.*;
+import entity.jackson.*;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import util.JacksonUtil;
@@ -53,7 +53,7 @@ public class JacksonTest{
     public void string2Obj() {
         String str = "{\"name\":\"小明儿\",\"age\":18,\"profileImageUrl\":\"\"}";
         Student student = JacksonUtil.string2Obj(str, Student.class);
-        // entity.Student(name=name, age=10, profileImageUrl=link)
+        // entity.jackson.Student(name=name, age=10, profileImageUrl=link)
         System.out.println(student);
 
         List<Student> students = new ArrayList<Student>();
@@ -67,11 +67,11 @@ public class JacksonTest{
         System.out.println(list);
 
         list = JacksonUtil.string2Obj(listStr, new TypeReference<List<Student>>(){});
-        // [entity.Student(name=小明儿, age=18, profileImageUrl=), entity.Student(name=小明儿, age=18, profileImageUrl=)]
+        // [entity.jackson.Student(name=小明儿, age=18, profileImageUrl=), entity.jackson.Student(name=小明儿, age=18, profileImageUrl=)]
         System.out.println(list);
 
         list = JacksonUtil.string2Obj(listStr, List.class , Student.class);
-        // [entity.Student(name=小明儿, age=18, profileImageUrl=), entity.Student(name=小明儿, age=18, profileImageUrl=)]
+        // [entity.jackson.Student(name=小明儿, age=18, profileImageUrl=), entity.jackson.Student(name=小明儿, age=18, profileImageUrl=)]
         System.out.println(list);
 
         String mapStr = "{\"a\":[1,2,3],\"b\":[4,5,6]}";
@@ -94,7 +94,7 @@ public class JacksonTest{
         // 反序列化： 被忽略的字段，会变为null
         String str = "{\"name\":\"name\",\"age\":10,\"profileImageUrl\":\"link\"}";
         StudentIgnore student1 = JacksonUtil.string2Obj(str, StudentIgnore.class);
-        // entity.Student(name=name, age=10, profileImageUrl=null)
+        // entity.jackson.Student(name=name, age=10, profileImageUrl=null)
         System.out.println(student1);
     }
 
@@ -112,7 +112,7 @@ public class JacksonTest{
         // 使用 jackson反序列化时，如果 字符串 中有未知属性，则会抛出异常
         String str = "{\"name\":\"name\",\"ageee\":10,\"profileImageUrl\":\"link\"}";
         StudentPro student1 = JacksonUtil.string2Obj(str, StudentPro.class);
-        // entity.StudentPro(name=name, age=10, profileImageUrl=link)
+        // entity.jackson.StudentPro(name=name, age=10, profileImageUrl=link)
         System.out.println(student1);
     }
 
